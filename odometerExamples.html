@@ -1,0 +1,48 @@
+
+<!-- Examples of Various Odometer Configurations -->
+
+<!-- Basic Odometer -->
+<div class="odometer" id="odometer1">0</div>
+
+<!-- Heading Odometer -->
+<h2><div class="odometer" id="odometer2">0</div></h2>
+
+<!-- With "+" icon -->
+<h2><div class="odometer" id="odometer3" style="display:inline-block;">0</div>+</h2>
+
+<!-- Slow -->
+<div class="odometer" id="odometer4">0</div>
+
+<!-- Quick -->
+<div class="odometer" id="odometer5">0</div>
+
+<!-- Small Number Range-->
+<div class="odometer" id="odometer6">0</div>
+
+<script>
+    function animateOdometer(target, elementId, duration = 2000) {
+        const element = document.getElementById(elementId);
+        let start = 0;
+        const increment = target / (duration / 16);
+
+        function update() {
+            start += increment;
+            if (start >= target) {
+                element.textContent = target.toLocaleString();
+            } else {
+                element.textContent = Math.floor(start).toLocaleString();
+                requestAnimationFrame(update);
+            }
+        }
+        update();
+    }
+
+    // Customise each odometer: final number, target element, and duration
+    animateOdometer(1234567, 'odometer1', 3000);
+    animateOdometer(1234567, 'odometer2', 3000);
+    animateOdometer(1234567, 'odometer3', 3000);
+    animateOdometer(1234567, 'odometer4', 10000);
+    animateOdometer(1234567, 'odometer5', 1000);
+    animateOdometer(7, 'odometer6', 3000);
+</script>
+
